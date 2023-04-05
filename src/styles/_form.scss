@@ -1,0 +1,64 @@
+section.form {
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    place-content: center;
+
+    article {
+        background-color: #de3c4b;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 3rem;
+        gap: 1rem;
+        border-radius: 20px;
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            align-self: center;
+            margin-bottom: 2rem;
+        }
+
+        input {
+            width: 500px;
+            height: 40px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            color: #fbf5f3;
+            border: none;
+            background-color: #e28413;
+
+            &::placeholder {
+                font-size: inherit;
+                text-align: inherit;
+                font-weight: initial;
+                color: inherit;
+            }
+
+            &:focus-visible {
+                outline: none;
+            }
+        }
+
+        .button-group {
+            margin-top: 1rem;
+            padding: 0 1.5rem;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            button {
+                padding: 0.5rem 1rem;
+                border: none;
+                border-radius: 5px;
+                font-size: 1rem;
+                font-weight: 900;
+                color: #e28413;
+            }
+        }
+    }
+}

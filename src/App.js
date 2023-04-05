@@ -1,3 +1,4 @@
+import "./styles/main.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { pageList } from "./pages";
 import AppContext from "./context/AppContext";
