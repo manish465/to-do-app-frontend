@@ -24,12 +24,7 @@ const AppContextProvider = ({ children }) => {
     };
 
     return (
-        <AppContext.Provider
-            value={{
-                state,
-                actions,
-            }}
-        >
+        <AppContext.Provider value={{ state, actions }}>
             {children}
         </AppContext.Provider>
     );

@@ -10,9 +10,11 @@ aside.notification {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     transform: translateX(100%);
-    transition: transform 0.2s ease-out;
+    opacity: 0;
+    transition: all 0.2s ease-out;
 }
 
 aside.notification.show {
     transform: translateX(0%);
+    opacity: 1;
 }
