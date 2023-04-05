@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppStructure from "./AppStructure";
 import { pageList } from "./pages";
 import AppContext from "./context/AppContext";
+import ProtectedRoute from "./ProtectedRoute";
 
 const App = () => {
     return (
@@ -13,7 +14,15 @@ const App = () => {
                             <Route
                                 key={key}
                                 path={page.path}
-                                element={page.element}
+                                element={
+                                    page.protected ? (
+                                        <ProtectedRoute>
+                                            {page.element}
+                                        </ProtectedRoute>
+                                    ) : (
+                                        page.element
+                                    )
+                                }
                             />
                         ))}
                     </Routes>
