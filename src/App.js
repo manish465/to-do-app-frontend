@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { pageList } from "./pages";
 import AppContext from "./context/AppContext";
-import AppStructure from "./AppStructure";
-import ProtectedRoute from "./ProtectedRoute";
+import AppStructure from "./components/AppStructure";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
     return (
