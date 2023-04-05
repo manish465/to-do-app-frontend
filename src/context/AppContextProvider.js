@@ -36,13 +36,15 @@ const AppContextProvider = ({ children }) => {
         )
             .then((response) => response.json())
             .then((data) => {
-                dispatch({
-                    type: actionType.SIGNUP,
-                    payload: { message: data.message },
-                });
-                navigate("/login");
+                if (data.message) {
+                    dispatch({
+                        type: actionType.SIGNUP,
+                        payload: { message: data.message },
+                    });
+                    navigate("/login");
+                } else showNotification(data.error);
             })
-            .catch((error) => actions.showNotification(error.message));
+            .catch((error) => showNotification(error.message));
     };
 
     const handleSignIn = (data) => {
@@ -58,17 +60,19 @@ const AppContextProvider = ({ children }) => {
         )
             .then((response) => response.json())
             .then((data) => {
-                dispatch({
-                    type: actionType.SIGNIN,
-                    payload: {
-                        token: data.token,
-                        id: data.id,
-                        message: data.message,
-                    },
-                });
-                navigate("/");
+                if (data.message) {
+                    dispatch({
+                        type: actionType.SIGNIN,
+                        payload: {
+                            token: data.token,
+                            id: data.id,
+                            message: data.message,
+                        },
+                    });
+                    navigate("/");
+                } else showNotification(data.error);
             })
-            .catch((error) => actions.showNotification(error.message));
+            .catch((error) => showNotification(error.message));
     };
 
     const actions = {
