@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AppStructure from "./AppStructure";
 import { pageList } from "./pages";
 import AppContext from "./context/AppContext";
+import AppStructure from "./AppStructure";
 import ProtectedRoute from "./ProtectedRoute";
 
 const App = () => {
