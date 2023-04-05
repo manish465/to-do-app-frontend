@@ -1,10 +1,12 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { actionType, initialState, reducer } from "./appReducer";
+import { useNavigate } from "react-router-dom";
 
 export const AppContext = createContext(initialState);
 
 const AppContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (state.showNotification) {
@@ -33,7 +35,13 @@ const AppContextProvider = ({ children }) => {
             }
         )
             .then((response) => response.json())
-            .then((data) => actions.showNotification(data.message))
+            .then((data) => {
+                dispatch({
+                    type: actionType.SIGNUP,
+                    payload: { message: data.message },
+                });
+                navigate("/login");
+            })
             .catch((error) => actions.showNotification(error.message));
     };
 
@@ -49,7 +57,17 @@ const AppContextProvider = ({ children }) => {
             }
         )
             .then((response) => response.json())
-            .then((data) => actions.showNotification(data.message))
+            .then((data) => {
+                dispatch({
+                    type: actionType.SIGNIN,
+                    payload: {
+                        token: data.token,
+                        id: data.id,
+                        message: data.message,
+                    },
+                });
+                navigate("/");
+            })
             .catch((error) => actions.showNotification(error.message));
     };
 

@@ -7,8 +7,8 @@ import AppContextProvider from "./context/AppContextProvider";
 
 const App = () => {
     return (
-        <AppContextProvider>
-            <BrowserRouter>
+        <BrowserRouter>
+            <AppContextProvider>
                 <AppStructure>
                     <Routes>
                         {pageList.map((page, key) => (
@@ -28,8 +28,8 @@ const App = () => {
                         ))}
                     </Routes>
                 </AppStructure>
-            </BrowserRouter>
-        </AppContextProvider>
+            </AppContextProvider>
+        </BrowserRouter>
     );
 };
 

@@ -2,11 +2,15 @@ export const initialState = {
     isAuthenticated: false,
     showNotification: false,
     notificationMessage: "",
+    token: "",
+    userId: "",
 };
 
 export const actionType = {
     SHOW_NOTIFICATION: "SHOW_NOTIFICATION",
     CLOSE_NOTIFICATION: "CLOSE_NOTIFICATION",
+    SIGNUP: "SIGNUP",
+    SIGNIN: "SIGNIN",
 };
 
 export const reducer = (state, action) => {
@@ -24,6 +28,23 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 showNotification: false,
+            };
+
+        case actionType.SIGNUP:
+            return {
+                ...state,
+                showNotification: true,
+                notificationMessage: payload.message,
+            };
+
+        case actionType.SIGNIN:
+            return {
+                ...state,
+                showNotification: true,
+                notificationMessage: payload.message,
+                token: payload.token,
+                userId: payload.id,
+                isAuthenticated: true,
             };
 
         default:

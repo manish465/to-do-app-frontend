@@ -3,9 +3,9 @@ import { Navigate } from "react-router-dom";
 import { AppContext } from "../context/AppContextProvider";
 
 const ProtectedRoute = ({ children }) => {
-    const { isAuthenticated } = useContext(AppContext);
+    const { state } = useContext(AppContext);
 
-    return isAuthenticated ? children : <Navigate to="/login" replace />;
+    return state.isAuthenticated ? children : <Navigate to="/login" replace />;
 };
 
 export default ProtectedRoute;
