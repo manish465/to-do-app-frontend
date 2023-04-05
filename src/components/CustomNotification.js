@@ -1,5 +1,17 @@
+import { useAppContext } from "../context/AppContextProvider";
+
 const CustomNotification = ({ children }) => {
-    return <aside className="notification">{children}</aside>;
+    const { state } = useAppContext();
+
+    return (
+        <aside
+            className={
+                state.showNotification ? "notification show" : "notification"
+            }
+        >
+            {state.notificationMessage}
+        </aside>
+    );
 };
 
 export default CustomNotification;

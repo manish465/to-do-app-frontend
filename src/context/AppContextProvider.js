@@ -14,11 +14,20 @@ const AppContextProvider = ({ children }) => {
         }
     }, [state.showNotification]);
 
+    const actions = {
+        showNotification: (message) => {
+            dispatch({
+                type: actionType.SHOW_NOTIFICATION,
+                payload: { message },
+            });
+        },
+    };
+
     return (
         <AppContext.Provider
             value={{
                 state,
-                dispatch,
+                actions,
             }}
         >
             {children}

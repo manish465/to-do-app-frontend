@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useAppContext } from "../context/AppContextProvider";
-import { actionType } from "../context/appReducer";
 
 const Signup = () => {
-    const { dispatch } = useAppContext();
+    const { actions } = useAppContext();
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -33,19 +32,8 @@ const Signup = () => {
                 }
             )
                 .then((response) => response.json())
-                .then((data) => {
-                    console.log(data.message);
-                    dispatch({
-                        type: actionType.SHOW_NOTIFICATION,
-                        payload: { message: data.message },
-                    });
-                })
-                .catch((error) => {
-                    dispatch({
-                        type: actionType.SHOW_NOTIFICATION,
-                        payload: error,
-                    });
-                });
+                .then((data) => actions.showNotification(data.message))
+                .catch((error) => actions.showNotification(error.message));
         } else alert("password should match");
     };
 
