@@ -1,10 +1,16 @@
+import { useContext } from "react";
 import CustomNotification from "./CustomNotification";
+import { appContext } from "../context/AppContext";
 
 const AppStructure = ({ children }) => {
+    const { showNotification, notificationMessage } = useContext(appContext);
+
     return (
         <>
             {children}
-            <CustomNotification>Notification</CustomNotification>
+            {showNotification && (
+                <CustomNotification>{notificationMessage}</CustomNotification>
+            )}
         </>
     );
 };

@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { appContext } from "../context/AppContext";
 
 const Signup = () => {
+    const { setNotificationMessage, setShowNotification } =
+        useContext(appContext);
+
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -29,8 +33,14 @@ const Signup = () => {
                 }
             )
                 .then((response) => response.json())
-                .then((data) => console.log(data))
-                .catch((error) => console.log(error));
+                .then((data) => {
+                    setNotificationMessage(data.message);
+                    setShowNotification(true);
+                })
+                .catch((error) => {
+                    setNotificationMessage(error);
+                    setShowNotification(true);
+                });
         } else alert("password should match");
     };
 
