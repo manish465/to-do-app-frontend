@@ -14,13 +14,49 @@ const AppContextProvider = ({ children }) => {
         }
     }, [state.showNotification]);
 
+    const showNotification = (message) => {
+        dispatch({
+            type: actionType.SHOW_NOTIFICATION,
+            payload: { message },
+        });
+    };
+
+    const handleSignUp = (data) => {
+        fetch(
+            "https://to-do-app-node-server.onrender.com/api/v1/user/add-user",
+            {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        )
+            .then((response) => response.json())
+            .then((data) => actions.showNotification(data.message))
+            .catch((error) => actions.showNotification(error.message));
+    };
+
+    const handleSignIn = (data) => {
+        fetch(
+            "https://to-do-app-node-server.onrender.com/api/v1/user/sign-in",
+            {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        )
+            .then((response) => response.json())
+            .then((data) => actions.showNotification(data.message))
+            .catch((error) => actions.showNotification(error.message));
+    };
+
     const actions = {
-        showNotification: (message) => {
-            dispatch({
-                type: actionType.SHOW_NOTIFICATION,
-                payload: { message },
-            });
-        },
+        showNotification,
+        handleSignUp,
+        handleSignIn,
     };
 
     return (

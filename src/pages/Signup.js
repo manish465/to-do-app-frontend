@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAppContext } from "../context/AppContextProvider";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
     const { actions } = useAppContext();
@@ -16,24 +17,7 @@ const Signup = () => {
 
     const handleSubmit = () => {
         if (password === password1) {
-            fetch(
-                "https://to-do-app-node-server.onrender.com/api/v1/user/add-user",
-                {
-                    method: "POST",
-                    body: JSON.stringify({
-                        firstName: firstName,
-                        lastName: lastName,
-                        email: email,
-                        password: password,
-                    }),
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            )
-                .then((response) => response.json())
-                .then((data) => actions.showNotification(data.message))
-                .catch((error) => actions.showNotification(error.message));
+            actions.handleSignUp({ firstName, lastName, email, password });
         } else actions.showNotification("password should match");
     };
 
@@ -85,7 +69,9 @@ const Signup = () => {
                     <button className="primary" onClick={handleSubmit}>
                         Sign Up
                     </button>
-                    <button>Login</button>
+                    <Link to="/login">
+                        <button>Login</button>
+                    </Link>
                 </div>
             </article>
         </section>
