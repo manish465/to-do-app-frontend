@@ -1,6 +1,6 @@
 import { useAppContext } from "../context/AppContextProvider";
 
-const CustomNotification = ({ children }) => {
+const CustomNotification = () => {
     const { state } = useAppContext();
 
     return (
