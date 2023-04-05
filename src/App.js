@@ -1,13 +1,13 @@
 import "./styles/main.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { pageList } from "./pages";
-import AppContext from "./context/AppContext";
 import AppStructure from "./components/AppStructure";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AppContextProvider from "./context/AppContextProvider";
 
 const App = () => {
     return (
-        <AppContext>
+        <AppContextProvider>
             <BrowserRouter>
                 <AppStructure>
                     <Routes>
@@ -29,7 +29,7 @@ const App = () => {
                     </Routes>
                 </AppStructure>
             </BrowserRouter>
-        </AppContext>
+        </AppContextProvider>
     );
 };
 
