@@ -10,7 +10,7 @@ const AppContextProvider = ({ children }) => {
         if (state.showNotification) {
             setTimeout(() => {
                 dispatch({ type: actionType.CLOSE_NOTIFICATION });
-            }, 1500);
+            }, 2000);
         }
     }, [state.showNotification]);
 

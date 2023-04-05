@@ -28,7 +28,7 @@ section.form {
             font-weight: 500;
             text-align: center;
             color: #fbf5f3;
-            border: none;
+            border: 3px solid transparent;
             background-color: #e28413;
 
             &::placeholder {
@@ -40,6 +40,7 @@ section.form {
 
             &:focus-visible {
                 outline: none;
+                border-color: #fbf5f3;
             }
         }
 
@@ -55,9 +56,15 @@ section.form {
                 padding: 0.5rem 1rem;
                 border: none;
                 border-radius: 5px;
-                font-size: 1rem;
+                font-size: 1.5rem;
                 font-weight: 900;
+                background-color: #fbf5f3;
                 color: #e28413;
+            }
+
+            button.primary {
+                background-color: #e28413;
+                color: #fbf5f3;
             }
         }
     }

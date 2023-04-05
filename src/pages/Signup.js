@@ -34,7 +34,7 @@ const Signup = () => {
                 .then((response) => response.json())
                 .then((data) => actions.showNotification(data.message))
                 .catch((error) => actions.showNotification(error.message));
-        } else alert("password should match");
+        } else actions.showNotification("password should match");
     };
 
     return (
@@ -82,7 +82,9 @@ const Signup = () => {
                     onChange={(event) => handleChange(event, setPassword1)}
                 />
                 <div className="button-group">
-                    <button onClick={handleSubmit}>Sign Up</button>
+                    <button className="primary" onClick={handleSubmit}>
+                        Sign Up
+                    </button>
                     <button>Login</button>
                 </div>
             </article>
