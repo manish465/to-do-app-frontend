@@ -4,6 +4,9 @@ export const initialState = {
     notificationMessage: "",
     token: "",
     userId: "",
+    userFirstName: "",
+    userLastName: "",
+    userEmail: "",
 };
 
 export const actionType = {
@@ -11,6 +14,7 @@ export const actionType = {
     CLOSE_NOTIFICATION: "CLOSE_NOTIFICATION",
     SIGNUP: "SIGNUP",
     SIGNIN: "SIGNIN",
+    STOREUSERINFO: "STOREUSERINFO",
 };
 
 export const reducer = (state, action) => {
@@ -45,6 +49,14 @@ export const reducer = (state, action) => {
                 token: payload.token,
                 userId: payload.id,
                 isAuthenticated: true,
+            };
+
+        case actionType.STOREUSERINFO:
+            return {
+                ...state,
+                userFirstName: payload.firstName,
+                userLastName: payload.lastName,
+                userEmail: payload.email,
             };
 
         default:

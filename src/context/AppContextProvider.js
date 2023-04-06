@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 export const AppContext = createContext(initialState);
 
+const url = "https://to-do-app-node-server.onrender.com";
+
 const AppContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const navigate = useNavigate();
@@ -24,16 +26,13 @@ const AppContextProvider = ({ children }) => {
     };
 
     const handleSignUp = (data) => {
-        fetch(
-            "https://to-do-app-node-server.onrender.com/api/v1/user/add-user",
-            {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-        )
+        fetch(url + "/api/v1/user/add-user", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
             .then((response) => response.json())
             .then((data) => {
                 if (data.message) {
@@ -48,16 +47,13 @@ const AppContextProvider = ({ children }) => {
     };
 
     const handleSignIn = (data) => {
-        fetch(
-            "https://to-do-app-node-server.onrender.com/api/v1/user/sign-in",
-            {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-        )
+        fetch(url + "/api/v1/user/sign-in", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
             .then((response) => response.json())
             .then((data) => {
                 if (data.message) {
@@ -75,10 +71,35 @@ const AppContextProvider = ({ children }) => {
             .catch((error) => showNotification(error.message));
     };
 
+    const handleGetUserInfo = () => {
+        fetch(url + "/api/v1/user/" + state.userId, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + state.token,
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.user) {
+                    dispatch({
+                        type: actionType.STOREUSERINFO,
+                        payload: {
+                            firstName: data.user.firstName,
+                            lastName: data.user.lastName,
+                            email: data.user.email,
+                        },
+                    });
+                } else showNotification(data.error);
+            })
+            .catch((error) => showNotification(error.message));
+    };
+
     const actions = {
         showNotification,
         handleSignUp,
         handleSignIn,
+        handleGetUserInfo,
     };
 
     return (
