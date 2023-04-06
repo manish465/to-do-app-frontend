@@ -22,7 +22,7 @@ const Signup = () => {
     };
 
     return (
-        <section className="form">
+        <section className="form page">
             <article>
                 <h1>Sign Up</h1>
                 <input
@@ -66,12 +66,12 @@ const Signup = () => {
                     onChange={(event) => handleChange(event, setPassword1)}
                 />
                 <div className="button-group">
-                    <button className="primary" onClick={handleSubmit}>
-                        Sign Up
-                    </button>
                     <Link to="/login">
                         <button>Login</button>
                     </Link>
+                    <button className="primary" onClick={handleSubmit}>
+                        Sign Up
+                    </button>
                 </div>
             </article>
         </section>

@@ -17,7 +17,7 @@ const Login = () => {
     };
 
     return (
-        <section className="form">
+        <section className="form page">
             <article>
                 <h1>Log In</h1>
                 <input
@@ -37,12 +37,12 @@ const Login = () => {
                     onChange={(event) => handleChange(event, setPassword)}
                 />
                 <div className="button-group">
-                    <button className="primary" onClick={handleSubmit}>
-                        Login
-                    </button>
                     <Link to="/sign-up">
                         <button>Sign Up</button>
                     </Link>
+                    <button className="primary" onClick={handleSubmit}>
+                        Login
+                    </button>
                 </div>
             </article>
         </section>
