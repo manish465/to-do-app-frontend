@@ -1,0 +1,28 @@
+header.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #de3c4b;
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    h2.hero {
+        cursor: pointer;
+        font-size: 2rem;
+        font-weight: 900;
+    }
+
+    ul.links {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+
+        li {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+    }
+}
