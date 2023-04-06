@@ -29,7 +29,12 @@ const Profile = () => {
                     <Link to="/update-profile">
                         <button>Update Profile</button>
                     </Link>
-                    <button className="primary">Delete Profile</button>
+                    <button
+                        className="primary"
+                        onClick={actions.handleUserDelete}
+                    >
+                        Delete Profile
+                    </button>
                 </div>
             </article>
         </section>

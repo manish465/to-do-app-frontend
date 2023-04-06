@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useAppContext } from "../context/AppContextProvider";
 
 const Navbar = () => {
-    const { state } = useAppContext();
+    const { state, actions } = useAppContext();
 
     return (
         <header className="navbar">
@@ -28,7 +28,9 @@ const Navbar = () => {
                         <li>Profile</li>
                     </Link>
                 )}
-                {state.isAuthenticated && <li>Logout</li>}
+                {state.isAuthenticated && (
+                    <li onClick={actions.handleUserLogout}>Logout</li>
+                )}
             </ul>
         </header>
     );

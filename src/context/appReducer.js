@@ -15,6 +15,7 @@ export const actionType = {
     SIGNUP: "SIGNUP",
     SIGNIN: "SIGNIN",
     STOREUSERINFO: "STOREUSERINFO",
+    USERLOGOUT: "USERLOGOUT",
 };
 
 export const reducer = (state, action) => {
@@ -57,6 +58,17 @@ export const reducer = (state, action) => {
                 userFirstName: payload.firstName,
                 userLastName: payload.lastName,
                 userEmail: payload.email,
+            };
+
+        case actionType.USERLOGOUT:
+            return {
+                ...state,
+                isAuthenticated: false,
+                token: "",
+                userId: "",
+                userFirstName: "",
+                userLastName: "",
+                userEmail: "",
             };
 
         default:

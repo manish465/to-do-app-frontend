@@ -122,12 +122,39 @@ const AppContextProvider = ({ children }) => {
             .catch((error) => showNotification(error.message));
     };
 
+    const handleUserDelete = () => {
+        fetch(url + "/api/v1/user/" + state.userId, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + state.token,
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.message) {
+                    navigate("/login");
+                    dispatch({ type: actionType.USERLOGOUT });
+                    showNotification(data.message);
+                } else showNotification(data.error);
+            })
+            .catch((error) => showNotification(error.message));
+    };
+
+    const handleUserLogout = () => {
+        navigate("/login");
+        dispatch({ type: actionType.USERLOGOUT });
+        showNotification("User Logged Out");
+    };
+
     const actions = {
         showNotification,
         handleSignUp,
         handleSignIn,
         handleGetUserInfo,
         handleChangeUserInfo,
+        handleUserDelete,
+        handleUserLogout,
     };
 
     return (
