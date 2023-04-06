@@ -95,11 +95,39 @@ const AppContextProvider = ({ children }) => {
             .catch((error) => showNotification(error.message));
     };
 
+    const handleChangeUserInfo = (data) => {
+        fetch(url + "/api/v1/user/" + state.userId, {
+            method: "PUT",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + state.token,
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.user) {
+                    dispatch({
+                        type: actionType.STOREUSERINFO,
+                        payload: {
+                            firstName: data.user.firstName,
+                            lastName: data.user.lastName,
+                            email: data.user.email,
+                        },
+                    });
+                    showNotification(data.message);
+                    navigate("/profile");
+                } else showNotification(data.error);
+            })
+            .catch((error) => showNotification(error.message));
+    };
+
     const actions = {
         showNotification,
         handleSignUp,
         handleSignIn,
         handleGetUserInfo,
+        handleChangeUserInfo,
     };
 
     return (

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useAppContext } from "../context/AppContextProvider";
 
 const Profile = () => {
@@ -25,7 +26,9 @@ const Profile = () => {
                     <span className="loading">Loading...</span>
                 )}
                 <div className="button-group">
-                    <button>Update Profile</button>
+                    <Link to="/update-profile">
+                        <button>Update Profile</button>
+                    </Link>
                     <button className="primary">Delete Profile</button>
                 </div>
             </article>
