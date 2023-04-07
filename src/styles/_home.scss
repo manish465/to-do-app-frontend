@@ -1,0 +1,103 @@
+.home {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+
+    .task-action {
+        position: fixed;
+        bottom: 3rem;
+        right: 3rem;
+
+        button.add-button {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            background-color: #de3c4b;
+            border-radius: 50px;
+            transition: all 0.2s ease-out;
+
+            span {
+                position: absolute;
+                width: 50px;
+                height: 8px;
+                border-radius: 5px;
+                background-color: #fbf5f3;
+                display: block;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+
+            span:nth-of-type(2) {
+                transform: translate(-50%, -50%) rotate(90deg);
+            }
+
+            &:hover {
+                span {
+                    width: 40px;
+                    height: 4px;
+                }
+            }
+        }
+    }
+
+    section.tasks {
+        width: 100%;
+        border-right: 2px dashed #fbf5f3;
+        padding: 4rem 2rem;
+        display: grid;
+        place-items: center;
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            padding: 0.5rem;
+        }
+
+        article.task {
+            width: 100%;
+            background-color: #000049;
+            border-radius: 15px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h1 {
+                font-size: 1.5rem;
+                font-weight: 700;
+            }
+
+            .task-tags {
+                display: flex;
+                gap: 0.5rem;
+
+                .task-tag {
+                    background-color: gray;
+                    padding: 0.2rem 0.8rem;
+                    border-radius: 40px;
+                    font-size: 1rem;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+
+    section.not-working > h1 {
+        background-color: grey;
+    }
+
+    section.working > h1 {
+        background-color: blue;
+    }
+
+    section.done > h1 {
+        background-color: rgb(120, 201, 0);
+    }
+
+    section.tasks:last-child {
+        border: none;
+    }
+}
