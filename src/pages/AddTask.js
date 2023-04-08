@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useAppContext } from "../context/AppContextProvider";
 
 const AddTask = () => {
+    const { actions } = useAppContext();
+
     const [taskName, setTaskName] = useState("");
     const [tags, setTags] = useState([]);
 
@@ -20,10 +23,14 @@ const AddTask = () => {
         setTags(newTags);
     };
 
-    const handleSubmit = () => {};
+    const handleSubmit = () => {
+        if (!tags.includes("") && taskName !== "") {
+            actions.handleAddTask({ taskName, tags });
+        } else actions.showNotification("Enter all the fields");
+    };
 
     return (
-        <section className="page form">
+        <section className="page form add-task">
             <article>
                 <h1>Add Task</h1>
                 <input
@@ -49,12 +56,13 @@ const AddTask = () => {
                         </button>
                     </div>
                 ))}
-                <div className="button-group">
-                    <button onClick={() => setTags([...tags, ""])}>
-                        Add a tag
-                    </button>
-                </div>
-                <div className="button-group">
+                <button
+                    className="add-tag"
+                    onClick={() => setTags([...tags, ""])}
+                >
+                    Add a tag
+                </button>
+                <div className="button-group" onClick={handleSubmit}>
                     <button className="primary">Submit</button>
                 </div>
             </article>

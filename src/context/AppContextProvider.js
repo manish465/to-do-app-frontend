@@ -147,6 +147,25 @@ const AppContextProvider = ({ children }) => {
         showNotification("User Logged Out");
     };
 
+    const handleAddTask = (data) => {
+        fetch(url + "/api/v1/task/add", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + state.token,
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.message) {
+                    showNotification(data.message);
+                    navigate("/");
+                } else showNotification(data.error);
+            })
+            .catch((error) => showNotification(error.message));
+    };
+
     const actions = {
         showNotification,
         handleSignUp,
@@ -155,6 +174,7 @@ const AppContextProvider = ({ children }) => {
         handleChangeUserInfo,
         handleUserDelete,
         handleUserLogout,
+        handleAddTask,
     };
 
     return (
