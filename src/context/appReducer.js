@@ -18,6 +18,7 @@ export const actionType = {
     STOREUSERINFO: "STOREUSERINFO",
     USERLOGOUT: "USERLOGOUT",
     UPDATETASKLIST: "UPDATETASKLIST",
+    EMPTYTASKLIST: "EMPTYTASKLIST",
 };
 
 export const reducer = (state, action) => {
@@ -73,12 +74,17 @@ export const reducer = (state, action) => {
                 userEmail: "",
             };
 
-        case actionType.UPDATETASKLIST: {
+        case actionType.UPDATETASKLIST:
             return {
                 ...state,
                 taskList: payload.tasks,
             };
-        }
+
+        case actionType.EMPTYTASKLIST:
+            return {
+                ...state,
+                taskList: [],
+            };
 
         default:
             return state;

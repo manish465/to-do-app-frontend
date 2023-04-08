@@ -15,10 +15,13 @@ const Home = () => {
             <TaskActionButton />
             <section className="tasks not-working">
                 <h1>Not Working</h1>
-                {state.taskList !== [] &&
+                {state.taskList !== [] ? (
                     state.taskList.map((taskItem, key) => (
                         <TagComponent key={key} taskItem={taskItem} />
-                    ))}
+                    ))
+                ) : (
+                    <div>Loading...</div>
+                )}
             </section>
             <section className="tasks working">
                 <h1>Working</h1>

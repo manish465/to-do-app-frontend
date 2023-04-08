@@ -167,6 +167,8 @@ const AppContextProvider = ({ children }) => {
     };
 
     const handleGetTask = () => {
+        dispatch({ type: actionType.EMPTYTASKLIST });
+
         fetch(url + "/api/v1/task/", {
             method: "GET",
             headers: {
