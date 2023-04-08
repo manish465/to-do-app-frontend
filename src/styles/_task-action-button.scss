@@ -1,0 +1,32 @@
+button.add-button {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    background-color: #de3c4b;
+    border-radius: 50px;
+    transition: all 0.2s ease-out;
+
+    span {
+        position: absolute;
+        width: 50px;
+        height: 8px;
+        border-radius: 5px;
+        background-color: #fbf5f3;
+        display: block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    span:nth-of-type(2) {
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    &:hover {
+        span {
+            width: 40px;
+            height: 4px;
+        }
+    }
+}
