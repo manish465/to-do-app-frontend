@@ -7,6 +7,7 @@ export const initialState = {
     userFirstName: "",
     userLastName: "",
     userEmail: "",
+    taskList: [],
 };
 
 export const actionType = {
@@ -16,6 +17,7 @@ export const actionType = {
     SIGNIN: "SIGNIN",
     STOREUSERINFO: "STOREUSERINFO",
     USERLOGOUT: "USERLOGOUT",
+    UPDATETASKLIST: "UPDATETASKLIST",
 };
 
 export const reducer = (state, action) => {
@@ -70,6 +72,13 @@ export const reducer = (state, action) => {
                 userLastName: "",
                 userEmail: "",
             };
+
+        case actionType.UPDATETASKLIST: {
+            return {
+                ...state,
+                taskList: payload.tasks,
+            };
+        }
 
         default:
             return state;

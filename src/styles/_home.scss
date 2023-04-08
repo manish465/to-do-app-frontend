@@ -1,4 +1,4 @@
-.home {
+section.home {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     place-items: center;
@@ -52,8 +52,9 @@
         h1 {
             font-size: 2rem;
             font-weight: 900;
-            margin-bottom: 2rem;
+            margin-bottom: 0.5rem;
             padding: 0.5rem;
+            transform: skewX(-5deg);
         }
 
         article.task {
@@ -64,6 +65,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-bottom: 0.5rem;
 
             h1 {
                 font-size: 1.5rem;
@@ -73,6 +75,8 @@
             .task-tags {
                 display: flex;
                 gap: 0.5rem;
+                margin-bottom: 1rem;
+                flex-wrap: wrap;
 
                 .task-tag {
                     background-color: gray;
@@ -80,6 +84,29 @@
                     border-radius: 40px;
                     font-size: 1rem;
                     font-weight: 400;
+                }
+            }
+
+            .button-group {
+                display: flex;
+                gap: 1rem;
+
+                button {
+                    padding: 0.5rem 1rem;
+                    border: none;
+                    border-radius: 5px;
+                    font-size: 1rem;
+                    font-weight: 900;
+                    letter-spacing: 1px;
+                    color: #fbf5f3;
+                }
+
+                button.orenge {
+                    background-color: orange;
+                }
+
+                button.red {
+                    background-color: red;
                 }
             }
         }

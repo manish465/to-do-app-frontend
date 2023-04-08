@@ -166,6 +166,26 @@ const AppContextProvider = ({ children }) => {
             .catch((error) => showNotification(error.message));
     };
 
+    const handleGetTask = () => {
+        fetch(url + "/api/v1/task/", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + state.token,
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.tasks) {
+                    dispatch({
+                        type: actionType.UPDATETASKLIST,
+                        payload: { tasks: data.tasks },
+                    });
+                } else showNotification(data.error);
+            })
+            .catch((error) => showNotification(error.message));
+    };
+
     const actions = {
         showNotification,
         handleSignUp,
@@ -175,6 +195,7 @@ const AppContextProvider = ({ children }) => {
         handleUserDelete,
         handleUserLogout,
         handleAddTask,
+        handleGetTask,
     };
 
     return (

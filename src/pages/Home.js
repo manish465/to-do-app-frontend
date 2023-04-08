@@ -1,6 +1,14 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useAppContext } from "../context/AppContextProvider";
 
 const Home = () => {
+    const { state, actions } = useAppContext();
+
+    useEffect(() => {
+        actions.handleGetTask();
+    }, []);
+
     return (
         <section className="home page">
             <div className="task-action">
@@ -13,15 +21,23 @@ const Home = () => {
             </div>
             <section className="tasks not-working">
                 <h1>Not Working</h1>
-                <article className="task">
-                    <h1 className="task-title">My Task</h1>
-                    <div className="task-tags">
-                        <div className="task-tag">#Work</div>
-                        <div className="task-tag">#Morning</div>
-                        <div className="task-tag">#First</div>
-                        <div className="task-tag">#High</div>
-                    </div>
-                </article>
+                {state.taskList !== [] &&
+                    state.taskList.map((taskItem, key) => (
+                        <article key={key} className="task">
+                            <h1 className="task-title">{taskItem.taskName}</h1>
+                            <div className="task-tags">
+                                {taskItem.tags.map((tag, tagKey) => (
+                                    <div key={tagKey} className="task-tag">
+                                        {"#" + tag}
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="button-group">
+                                <button className="orenge">EDIT</button>
+                                <button className="red">REMOVE</button>
+                            </div>
+                        </article>
+                    ))}
             </section>
             <section className="tasks working">
                 <h1>Working</h1>
