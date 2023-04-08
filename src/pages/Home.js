@@ -1,11 +1,15 @@
+import { Link } from "react-router-dom";
+
 const Home = () => {
     return (
         <section className="home page">
             <div className="task-action">
-                <button className="add-button">
-                    <span></span>
-                    <span></span>
-                </button>
+                <Link to="/add-task">
+                    <button className="add-button">
+                        <span></span>
+                        <span></span>
+                    </button>
+                </Link>
             </div>
             <section className="tasks not-working">
                 <h1>Not Working</h1>

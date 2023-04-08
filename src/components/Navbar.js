@@ -6,7 +6,9 @@ const Navbar = () => {
 
     return (
         <header className="navbar">
-            <h2 className="hero">My Goal List</h2>
+            <Link to="/">
+                <h2 className="hero">My Goal List</h2>
+            </Link>
             <ul className="links">
                 {!state.isAuthenticated && (
                     <Link to="/login">
