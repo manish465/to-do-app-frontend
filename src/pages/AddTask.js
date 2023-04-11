@@ -30,7 +30,7 @@ const AddTask = () => {
     };
 
     return (
-        <section className="page form add-task">
+        <section className="page form manage-task">
             <article>
                 <h1>Add Task</h1>
                 <input

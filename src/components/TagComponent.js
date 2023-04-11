@@ -1,4 +1,8 @@
+import { useAppContext } from "../context/AppContextProvider";
+
 const TagComponent = ({ taskItem, setShowModal, setCurrentTask }) => {
+    const { actions } = useAppContext();
+
     return (
         <article className="task">
             <h1 className="task-title">{taskItem.taskName}</h1>
@@ -19,7 +23,12 @@ const TagComponent = ({ taskItem, setShowModal, setCurrentTask }) => {
                 >
                     EDIT
                 </button>
-                <button className="red">REMOVE</button>
+                <button
+                    className="red"
+                    onClick={() => actions.handleTaskDelete(taskItem._id)}
+                >
+                    REMOVE
+                </button>
             </div>
         </article>
     );

@@ -26,7 +26,7 @@ const EditTaskModal = ({ currentTask, setShowModal }) => {
 
     const handleSubmit = () => {
         if (!tags.includes("") && taskName !== "") {
-            actions.handleAddUpdate(currentTask._id, {
+            actions.handleTaskUpdate(currentTask._id, {
                 taskName,
                 tags,
                 taskStatus: status,

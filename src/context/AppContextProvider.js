@@ -188,10 +188,28 @@ const AppContextProvider = ({ children }) => {
             .catch((error) => showNotification(error.message));
     };
 
-    const handleAddUpdate = (id, data) => {
+    const handleTaskUpdate = (id, data) => {
         fetch(url + "/api/v1/task/" + id, {
             method: "PUT",
             body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + state.token,
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.message) {
+                    showNotification(data.message);
+                    handleGetTask();
+                } else showNotification(data.error);
+            })
+            .catch((error) => showNotification(error.message));
+    };
+
+    const handleTaskDelete = (id) => {
+        fetch(url + "/api/v1/task/" + id, {
+            method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: "Bearer " + state.token,
@@ -217,7 +235,8 @@ const AppContextProvider = ({ children }) => {
         handleUserLogout,
         handleAddTask,
         handleGetTask,
-        handleAddUpdate,
+        handleTaskUpdate,
+        handleTaskDelete,
     };
 
     return (

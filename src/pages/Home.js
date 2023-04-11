@@ -44,7 +44,7 @@ const Home = () => {
                 <section className={taskSection.classList}>
                     <h1>{taskSection.headingText}</h1>
                     {state.taskList.length === 0 ? (
-                        <span className="empty">Nothing here</span>
+                        <span className="empty">Loading...</span>
                     ) : (
                         state.taskList.map(
                             (taskItem, key) =>
