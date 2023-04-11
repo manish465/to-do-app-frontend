@@ -38,3 +38,13 @@ section.page {
     display: grid;
     place-content: center;
 }
+
+span.empty {
+    font-size: 1.5rem;
+}
+
+input,
+select {
+    font-family: "Rajdhani", sans-serif;
+    color: #fbf5f3;
+}

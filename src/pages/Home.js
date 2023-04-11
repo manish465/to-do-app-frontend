@@ -1,9 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppContext } from "../context/AppContextProvider";
 import TaskActionButton from "../components/TaskActionButton";
 import TagComponent from "../components/TagComponent";
+import EditTaskModal from "../components/EditTaskModal";
 
 const Home = () => {
+    const [showModal, setShowModal] = useState(false);
+    const [currentTask, setCurrentTask] = useState({});
     const { state, actions } = useAppContext();
 
     useEffect(() => {
@@ -12,15 +15,26 @@ const Home = () => {
 
     return (
         <section className="home page">
+            {showModal && (
+                <EditTaskModal
+                    currentTask={currentTask}
+                    setShowModal={setShowModal}
+                />
+            )}
             <TaskActionButton />
             <section className="tasks not-working">
                 <h1>Not Working</h1>
-                {state.taskList !== [] ? (
-                    state.taskList.map((taskItem, key) => (
-                        <TagComponent key={key} taskItem={taskItem} />
-                    ))
+                {state.taskList.length === 0 ? (
+                    <span className="empty">Nothing here</span>
                 ) : (
-                    <div>Loading...</div>
+                    state.taskList.map((taskItem, key) => (
+                        <TagComponent
+                            key={key}
+                            taskItem={taskItem}
+                            setShowModal={setShowModal}
+                            setCurrentTask={setCurrentTask}
+                        />
+                    ))
                 )}
             </section>
             <section className="tasks working">

@@ -8,6 +8,7 @@ export const initialState = {
     userLastName: "",
     userEmail: "",
     taskList: [],
+    currentTaskToEdit: {},
 };
 
 export const actionType = {
@@ -19,6 +20,7 @@ export const actionType = {
     USERLOGOUT: "USERLOGOUT",
     UPDATETASKLIST: "UPDATETASKLIST",
     EMPTYTASKLIST: "EMPTYTASKLIST",
+    UPDATECURRENTTASKTOEDIT: "UPDATECURRENTTASKTOEDIT",
 };
 
 export const reducer = (state, action) => {
@@ -84,6 +86,12 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 taskList: [],
+            };
+
+        case actionType.UPDATECURRENTTASKTOEDIT:
+            return {
+                ...state,
+                currentTaskToEdit: payload.task,
             };
 
         default:

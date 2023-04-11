@@ -39,6 +39,17 @@ section.form {
             }
         }
 
+        select#status {
+            padding: 0.5rem 1rem;
+            background-color: #e28413;
+            border: none;
+            border-radius: 5px;
+
+            &:focus-visible {
+                outline: none;
+            }
+        }
+
         .button-group {
             margin-top: 1rem;
             width: 100%;

@@ -188,6 +188,25 @@ const AppContextProvider = ({ children }) => {
             .catch((error) => showNotification(error.message));
     };
 
+    const handleAddUpdate = (id, data) => {
+        fetch(url + "/api/v1/task/" + id, {
+            method: "PUT",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + state.token,
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.message) {
+                    showNotification(data.message);
+                    handleGetTask();
+                } else showNotification(data.error);
+            })
+            .catch((error) => showNotification(error.message));
+    };
+
     const actions = {
         showNotification,
         handleSignUp,
@@ -198,6 +217,7 @@ const AppContextProvider = ({ children }) => {
         handleUserLogout,
         handleAddTask,
         handleGetTask,
+        handleAddUpdate,
     };
 
     return (

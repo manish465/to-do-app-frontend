@@ -1,4 +1,4 @@
-const TagComponent = ({ taskItem }) => {
+const TagComponent = ({ taskItem, setShowModal, setCurrentTask }) => {
     return (
         <article className="task">
             <h1 className="task-title">{taskItem.taskName}</h1>
@@ -10,7 +10,15 @@ const TagComponent = ({ taskItem }) => {
                 ))}
             </div>
             <div className="button-group">
-                <button className="orenge">EDIT</button>
+                <button
+                    className="orenge"
+                    onClick={() => {
+                        setShowModal(true);
+                        setCurrentTask(taskItem);
+                    }}
+                >
+                    EDIT
+                </button>
                 <button className="red">REMOVE</button>
             </div>
         </article>
